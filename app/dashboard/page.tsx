@@ -1,13 +1,13 @@
-import DropArea from '@/components/dropzone'
-import { UserButton } from '@clerk/nextjs'
-import React from 'react'
+import DropArea from "@/components/dropzone";
+import { UserButton } from "@clerk/nextjs";
+import React from "react";
 
 const Dashboard = () => {
   return (
     <>
-    <DropArea />
+      <DropArea />
     </>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
