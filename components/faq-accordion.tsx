@@ -24,28 +24,37 @@ const FaqAccordion = () => {
 
   return (
     <>
-      <div className="flex flex-col text-center items-center mt-16 lg:w-2/3">
+      <div className="flex flex-col text-center items-center mt-16 lg:w-2/3 mx-5 mb-24">
         <h1 className="text-3xl m-1 font-mono">Frequently Asked Questions</h1>
         <Accordion type="single" collapsible className="w-full">
-            {/* {faqQuestions.map()} */}
+          {/* {faqQuestions.map()} */}
           <AccordionItem value="item-1">
-            <AccordionTrigger>Is it accessible?</AccordionTrigger>
+            <AccordionTrigger>Is my data secure on DumpDrop?</AccordionTrigger>
             <AccordionContent>
-              Yes. It adheres to the WAI-ARIA design pattern.
+              Yes, we take data security seriously. DumpDrop employs encryption
+              protocols to ensure the confidentiality and integrity of your data
+              during transit and storage.
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-2">
-            <AccordionTrigger>Is it styled?</AccordionTrigger>
+            <AccordionTrigger>
+              How can I share files with others using DumpDrop?
+            </AccordionTrigger>
             <AccordionContent>
-              Yes. It comes with default styles that matches the other
-              components&apos; aesthetic.
+              Sharing files on DumpDrop is easy. After uploading your files, you
+              can generate a shareable link or invite specific users to access
+              your files.
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-3">
-            <AccordionTrigger>Is it animated?</AccordionTrigger>
+            <AccordionTrigger>
+              How do I upload files to DumpDrop?
+            </AccordionTrigger>
             <AccordionContent>
-              Yes. It&apos;s animated by default, but you can disable it if you
-              prefer.
+              To upload files to DumpDrop, simply click on the "Upload" button
+              located on the main dashboard. You can then select the files you
+              want to upload from your device. DumpDrop supports a variety of
+              file types, and you can upload multiple files
             </AccordionContent>
           </AccordionItem>
         </Accordion>

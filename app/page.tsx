@@ -44,7 +44,7 @@ export default function Home() {
           </video>
         </div>
       </div>
-      <div className="flex flex-col w-full items-center mt-5">
+      <div className="flex flex-col w-full items-center mt-5 px-5">
         <div className="flex flex-col text-center items-center">
           <h1 className="text-3xl m-1 font-serif">
             Focus on the work that matters
@@ -57,7 +57,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="flex flex-col text-center items-center mt-5">
+        <div className="flex flex-col text-center items-center mt-5 px-5">
           <h1 className="text-3xl m-1 font-serif">Be organized</h1>
           <p className="lg:w-2/3">
             Bring traditional files, cloud content, Dropbox Paper docs, and web
@@ -66,9 +66,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="flex flex-col text-center items-center mt-5">
-          <h1 className="text-3xl m-1 font-serif">See more features</h1>
-        </div>
+        
 
         <FaqAccordion />
         <Footer />
