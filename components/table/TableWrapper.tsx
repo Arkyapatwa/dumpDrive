@@ -1,9 +1,13 @@
 import React from 'react'
 import { skeleton } from '@/typings'
+import { Button } from '../ui/button'
 
 const TableWrapper = ({skeletonFiles}: {skeletonFiles: skeleton[]}) => {
   return (
-    <div>TableWrapper</div>
+    <div>
+        <Button>Sort By...</Button>
+        {/* Data Table */}
+    </div>
   )
 }
 

@@ -24,18 +24,13 @@ const Dashboard = async () => {
 
   return (
     <>
-      <div>
+      <div className="border-t">
         <DropArea />
-        <section>
-          <h2>All Files</h2>
-          <div>
-            <TableWrapper
-            skeletonFiles =  {skeletonFiles}
-            />
-          </div>
+        <section className="container space-y-5">
+            <h2 className="font-bold">All Files</h2>
+            <TableWrapper skeletonFiles={skeletonFiles} />
         </section>
       </div>
-
     </>
   );
 };
