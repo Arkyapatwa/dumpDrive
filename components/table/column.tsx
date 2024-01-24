@@ -9,11 +9,11 @@ import { FileIcon, defaultStyles } from 'react-file-icon';
 
 export const columns: ColumnDef<skeleton>[] = [
   {
-    accessorKey: "fileType",
-    header: "type",
+    accessorKey: "type",
+    header: "Type",
     cell: ({renderValue, ...props}) => {
         const type = renderValue() as string
-        const extension = type.split("/")[1]
+        const extension: string = type.split("/")[1]
         return (
             <div className="w-10">
                 <FileIcon 
@@ -25,7 +25,7 @@ export const columns: ColumnDef<skeleton>[] = [
     }
   },
   {
-    accessorKey: "filename",
+    accessorKey: "fileName",
     header: "Filename",
   },
   {
@@ -43,7 +43,7 @@ export const columns: ColumnDef<skeleton>[] = [
     accessorKey: "downloadUrl",
     header: "Link",
     cell: ({ renderValue, ...props }) => {
-      <a
+      return <a
         href={renderValue() as string}
         target="_blank"
         className="underline text-blue-500 hover:text-blue-600"

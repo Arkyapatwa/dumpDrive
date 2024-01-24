@@ -1,9 +1,9 @@
 export type skeleton = {
-  id: Number;
-  fileName: String;
-  fullName: String;
-  downloadUrl: String;
+  id: string;
+  fileName: string;
+  fullName: string;
+  downloadUrl: string;
   timestamp: Date;
-  type: String;
-  size: Number;
+  type: string;
+  size: number;
 };
