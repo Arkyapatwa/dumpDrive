@@ -15,6 +15,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { Button } from "../ui/button"
+import { skeleton } from "@/typings"
+import { TrashIcon } from "lucide-react"
+import { useAppStore } from "@/store/store"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -30,6 +34,15 @@ export function DataTable<TData, TValue>({
     columns,
     getCoreRowModel: getCoreRowModel(),
   })
+
+  const [fileId, setFileId, setIsDeleteModalOpen] = useAppStore((state) => [state.fileId, state.setFileId, state.setIsDeleteModalOpen])
+
+  const openDeleteModal = (fileId: string) => {
+    setFileId(fileId);
+    setIsDeleteModalOpen(true);
+  }
+
+
 
   return (
     <div className="rounded-md border">
@@ -64,12 +77,22 @@ export function DataTable<TData, TValue>({
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
+
+                <TableCell key={(row.original as skeleton).id}>
+                    <Button variant={'outline'}
+                    onClick={()=> {
+                        openDeleteModal((row.original as skeleton).id)
+                    }}
+                    >
+                        <TrashIcon size={20} />
+                    </Button>
+                </TableCell>
               </TableRow>
             ))
           ) : (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
+                You have no Files.
               </TableCell>
             </TableRow>
           )}

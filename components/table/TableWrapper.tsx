@@ -55,7 +55,7 @@ const TableWrapper = ({ skeletonFiles }: { skeletonFiles: skeleton[] }) => {
           ))}
 
           {skeletonFiles.length == 0 && (
-            <div className="flex items-center w-full p-5 gap-4" key={file.id}>
+            <div className="flex items-center w-full p-5 gap-4">
               <Skeleton className="w-12 h-12" />
               <Skeleton className="w-full h-12" />
             </div>

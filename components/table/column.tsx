@@ -3,6 +3,7 @@
 import { colorExtension } from "@/extColor";
 import { skeleton } from "@/typings";
 import { ColumnDef } from "@tanstack/react-table";
+import { PencilIcon } from "lucide-react";
 import prettyBytes from "pretty-bytes";
 import { FileIcon, defaultStyles } from 'react-file-icon';
 
@@ -27,10 +28,30 @@ export const columns: ColumnDef<skeleton>[] = [
   {
     accessorKey: "fileName",
     header: "Filename",
+    cell: ({renderValue, ...props}) => {
+      return (
+        <div className="flex underline text-blue-500 cursor-pointer">
+          <span>{(renderValue() as string)}</span>
+          <span onClick={() => {
+
+          }}>
+            <PencilIcon size={15} className="ml-2" />
+          </span>
+        </div>
+      )
+    }
   },
   {
     accessorKey: "timestamp",
     header: "Date Added",
+    cell: ({renderValue, ...props}) => {
+        return (
+            <div className="flex flex-col">
+                <span>{(renderValue() as Date).toLocaleDateString()}</span>
+                <span className="text-xs">{(renderValue() as Date).toLocaleTimeString()}</span>
+            </div>
+        )
+    }
   },
   {
     accessorKey: "size",
