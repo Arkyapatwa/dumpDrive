@@ -19,6 +19,7 @@ import { Button } from "../ui/button"
 import { skeleton } from "@/typings"
 import { TrashIcon } from "lucide-react"
 import { useAppStore } from "@/store/store"
+import { DeleteModal } from "../deleteModal"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -35,7 +36,7 @@ export function DataTable<TData, TValue>({
     getCoreRowModel: getCoreRowModel(),
   })
 
-  const [fileId, setFileId, setIsDeleteModalOpen] = useAppStore((state) => [state.fileId, state.setFileId, state.setIsDeleteModalOpen])
+  const [fileId, setFileId, isDeleteModalOpen, setIsDeleteModalOpen] = useAppStore((state) => [state.fileId, state.setFileId, state.isDeleteModalOpen, state.setIsDeleteModalOpen])
 
   const openDeleteModal = (fileId: string) => {
     setFileId(fileId);
@@ -72,6 +73,8 @@ export function DataTable<TData, TValue>({
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
               >
+                  <DeleteModal />
+
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -99,5 +102,6 @@ export function DataTable<TData, TValue>({
         </TableBody>
       </Table>
     </div>
+
   )
 }

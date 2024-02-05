@@ -1,6 +1,7 @@
 "use client";
 
 import { colorExtension } from "@/extColor";
+import { useAppStore } from "@/store/store";
 import { skeleton } from "@/typings";
 import { ColumnDef } from "@tanstack/react-table";
 import { PencilIcon } from "lucide-react";
@@ -9,6 +10,7 @@ import { FileIcon, defaultStyles } from 'react-file-icon';
 
 
 export const columns: ColumnDef<skeleton>[] = [
+
   {
     accessorKey: "type",
     header: "Type",
@@ -33,7 +35,7 @@ export const columns: ColumnDef<skeleton>[] = [
         <div className="flex underline text-blue-500 cursor-pointer">
           <span>{(renderValue() as string)}</span>
           <span onClick={() => {
-
+            
           }}>
             <PencilIcon size={15} className="ml-2" />
           </span>
