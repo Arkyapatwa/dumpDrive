@@ -31,11 +31,17 @@ export const columns: ColumnDef<skeleton>[] = [
     accessorKey: "fileName",
     header: "Filename",
     cell: ({renderValue, ...props}) => {
+
+      const [setfileName, setIsRenameModalOpen] = useAppStore((state) => [state.setFileName, state.setIsRenameModalOpen]);
+
+      const openRenameModal = () => {
+        setIsRenameModalOpen(true);
+      }
       return (
         <div className="flex underline text-blue-500 cursor-pointer">
           <span>{(renderValue() as string)}</span>
           <span onClick={() => {
-            
+            openRenameModal();
           }}>
             <PencilIcon size={15} className="ml-2" />
           </span>
