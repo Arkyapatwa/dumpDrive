@@ -35,12 +35,13 @@ export function DeleteModal() {
                 deleteDoc(doc(db, "users", user.id, "files", fileId)).then(() => {
                     console.log("deleted!");
                 })
+            }).finally(() => {
+                setIsDeleteModalOpen(false);
             })
         } catch (error) {
             console.log(error);
         }
 
-        setIsDeleteModalOpen(false);
     }
 
   return (
