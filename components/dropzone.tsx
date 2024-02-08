@@ -13,10 +13,12 @@ import {
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useState } from "react";
 import Dropzone from "react-dropzone";
+import { useToast } from "./ui/use-toast";
 
 const DropArea = () => {
   const [loading, setLoading] = useState(false);
   const { user } = useUser();
+  const { toast } = useToast()
   const onDrop = (selectedFiles: File[]) => {
     console.log(selectedFiles);
     selectedFiles.forEach((file) => {
@@ -66,6 +68,10 @@ const DropArea = () => {
       await updateDoc(doc(db, "users", user.id, "files", firestoreDocRef.id), {
         downloadUrl: downloadUrl
       });
+    }).then(() => {
+      toast({
+        title: "File Uploaded Successfully ✅"
+      })
     });
 
     setLoading(false);

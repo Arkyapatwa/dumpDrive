@@ -15,21 +15,31 @@ import {
 import { useAppStore } from "@/store/store"
 import { deleteObject, ref } from "firebase/storage"
 import { db, storage } from "@/firebase"
-import { deleteDoc, doc } from "firebase/firestore"
+import { deleteDoc, doc, updateDoc } from "firebase/firestore"
 import { Input } from "./ui/input"
 import { useState } from "react"
+import { useToast } from "./ui/use-toast"
 
 
 const RenameModal = () => {
 
     const { user } = useUser()
+    const { toast } = useToast()
     const [ input, setInput ] = useState("")
-    const [isRenameModalOpen, setRenameModalOpen] = useAppStore((state) => [state.isRenameModalOpen, state.setIsRenameModalOpen])
+    const [isRenameModalOpen, setRenameModalOpen, fileId] = useAppStore((state) => [state.isRenameModalOpen, state.setIsRenameModalOpen, state.fileId])
 
     async function renameFile() {
-        if (!user) return;
+        if (!user || !fileId) return;
 
+        await updateDoc(doc(db, "users", user.id, "files", fileId), {
+            fileName: input,
+        })
 
+        setInput("");
+        setRenameModalOpen(false);
+        toast({
+            title: "File renamed Successfully ✅"
+        })
     }
 
   return (
@@ -37,6 +47,7 @@ const RenameModal = () => {
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Rename File</DialogTitle>
+        </DialogHeader>
           <DialogDescription>
             <Input 
             id="link"
@@ -48,7 +59,6 @@ const RenameModal = () => {
             }}
             />
           </DialogDescription>
-        </DialogHeader>
 
         <div className="flex space-x-2 py-3">
             <Button className="px-3 flex-1" variant={"ghost"}
