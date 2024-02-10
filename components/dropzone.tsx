@@ -80,7 +80,7 @@ const DropArea = () => {
   };
 
   // max size limit is 50MB is 52428800 bytes
-  const maxLimit = 222;
+  const maxLimit = 52428800;
   const maxFiles = 5;
 
   return (
