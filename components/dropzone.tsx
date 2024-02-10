@@ -18,7 +18,9 @@ import { useToast } from "./ui/use-toast";
 const DropArea = () => {
   const [loading, setLoading] = useState(false);
   const { user } = useUser();
-  const { toast } = useToast()
+  const { toast } = useToast();
+
+
   const onDrop = (selectedFiles: File[]) => {
     console.log(selectedFiles);
     selectedFiles.forEach((file) => {
@@ -77,8 +79,9 @@ const DropArea = () => {
     setLoading(false);
   };
 
-  // max size limit is 100MB
-  const maxLimit = 104857600;
+  // max size limit is 50MB is 52428800 bytes
+  const maxLimit = 222;
+  const maxFiles = 5;
 
   return (
     <>
@@ -86,6 +89,7 @@ const DropArea = () => {
         minSize={0}
         maxSize={maxLimit}
         onDrop={onDrop}
+        maxFiles={maxFiles}
       >
         {({
           getRootProps,
@@ -95,7 +99,9 @@ const DropArea = () => {
           fileRejections,
         }) => {
           const isFileLarge =
-            fileRejections.length > 0 && fileRejections[0].file.size > maxLimit;
+            (fileRejections.length > 0 && fileRejections[0].file.size > maxLimit);
+
+          const isFileLimit = fileRejections.length > 5;
 
           return (
             <section className="m-5">
@@ -112,11 +118,16 @@ const DropArea = () => {
                 {!isDragActive && "Drag and Drop Files Here"}
                 {isDragActive && !isDragReject && "Drop File now"}
                 {isDragReject && "File not Accepted"}
-                {isFileLarge && (
+                {/* {isFileLarge && (
                   <p className="p-1 border-red-700 text-red-700 bg-red-300">
                     File Too Large
                   </p>
                 )}
+                {isFileLimit && !isFileLarge && (
+                  <p className="p-1 border-red-700 text-red-700 bg-red-300">
+                    Too Many Files
+                  </p>
+                )} */}
               </div>
             </section>
           );

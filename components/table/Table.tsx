@@ -84,7 +84,7 @@ export function DataTable<TData, TValue>({
                 ))}
 
                 <TableCell key={(row.original as skeleton).id}>
-                    <Button variant={'outline'}
+                    <Button variant={'ghost'}
                     onClick={()=> {
                         openDeleteModal((row.original as skeleton).id)
                     }}

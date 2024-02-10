@@ -4,7 +4,7 @@ import { colorExtension } from "@/extColor";
 import { useAppStore } from "@/store/store";
 import { skeleton } from "@/typings";
 import { ColumnDef } from "@tanstack/react-table";
-import { PencilIcon } from "lucide-react";
+import { Download, PencilIcon } from "lucide-react";
 import prettyBytes from "pretty-bytes";
 import { FileIcon, defaultStyles } from "react-file-icon";
 
@@ -87,9 +87,10 @@ export const columns: ColumnDef<skeleton>[] = [
         <a
           href={renderValue() as string}
           target="_blank"
-          className="underline text-blue-500 hover:text-blue-600"
+          className="underline hover:text-blue-500 hover:text-blue-600"
         >
-          Download
+          {/* Download */}
+          <Download />
         </a>
       );
     },
