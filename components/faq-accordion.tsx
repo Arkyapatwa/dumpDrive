@@ -51,7 +51,7 @@ const FaqAccordion = () => {
               How do I upload files to DumpDrop?
             </AccordionTrigger>
             <AccordionContent>
-              To upload files to DumpDrop, simply click on the "Upload" button
+              To upload files to DumpDrop, simply click on the &quot;Upload&quot; button
               located on the main dashboard. You can then select the files you
               want to upload from your device. DumpDrop supports a variety of
               file types, and you can upload multiple files

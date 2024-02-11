@@ -8,6 +8,37 @@ import { Download, PencilIcon } from "lucide-react";
 import prettyBytes from "pretty-bytes";
 import { FileIcon, defaultStyles } from "react-file-icon";
 
+interface Column {
+  accessorKey: string;
+  header: string;
+  cell: React.ComponentType<any>;
+}
+
+const MyColumn: React.FC<any> = ({ renderValue, row, ...props }) => {
+  const [setFileId, setfileName, setIsRenameModalOpen] = useAppStore(
+    (state) => [
+      state.setFileId,
+      state.setFileName,
+      state.setIsRenameModalOpen,
+    ]
+  );
+
+  const openRenameModal = (fileId: string, fileName: string) => {
+    setFileId(fileId);
+    setfileName(fileName);
+    setIsRenameModalOpen(true);
+  };
+
+  return (
+    <div key={(row.original as skeleton).id} className="flex underline text-blue-500 cursor-pointer">
+      <div className="flex" onClick={() => openRenameModal((row.original as skeleton).id, renderValue() as string)}>
+        <span>{renderValue() as string}</span>
+        <PencilIcon size={15} className="ml-2" />
+      </div>
+    </div>
+  );
+};
+
 export const columns: ColumnDef<skeleton>[] = [
   {
     accessorKey: "type",
@@ -28,35 +59,7 @@ export const columns: ColumnDef<skeleton>[] = [
   {
     accessorKey: "fileName",
     header: "Filename",
-    cell: ({ renderValue, row, ...props }) => {
-      const [setFileId, setfileName, setIsRenameModalOpen] = useAppStore(
-        (state) => [
-          state.setFileId,
-          state.setFileName,
-          state.setIsRenameModalOpen,
-        ]
-      );
-
-      const openRenameModal = (fileId: string, fileName: string) => {
-        setFileId(fileId);
-        setfileName(fileName);
-        setIsRenameModalOpen(true);
-      };
-      return (
-        <div key={(row.original as skeleton).id} className="flex underline text-blue-500 cursor-pointer">
-          <div className="flex"
-          onClick={() => {
-                openRenameModal(
-                  (row.original as skeleton).id,
-                  renderValue() as string
-                );
-              }}>
-            <span>{renderValue() as string}</span>
-            <PencilIcon size={15} className="ml-2" />
-          </div>
-        </div>
-      );
-    },
+    cell: MyColumn,
   },
   {
     accessorKey: "timestamp",
