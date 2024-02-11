@@ -5,3 +5,4 @@ Making a DropBox Clone using Nextjs and ....
 3. DarkMode (Next-Theme)
 4. No-SQL Databse (Firebase FireStore)
 5. Storage (Firebase Storage)
+6. Zustand (State Management)
