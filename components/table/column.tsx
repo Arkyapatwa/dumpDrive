@@ -5,6 +5,7 @@ import { useAppStore } from "@/store/store";
 import { skeleton } from "@/typings";
 import { ColumnDef } from "@tanstack/react-table";
 import { Download, PencilIcon } from "lucide-react";
+import Link from "next/link";
 import prettyBytes from "pretty-bytes";
 import { FileIcon, defaultStyles } from "react-file-icon";
 
@@ -85,16 +86,17 @@ export const columns: ColumnDef<skeleton>[] = [
   {
     accessorKey: "downloadUrl",
     header: "Link",
-    cell: ({ renderValue, ...props }) => {
+    cell: ({ renderValue,row, ...props }) => {
       return (
-        <a
-          href={renderValue() as string}
+        <Link
+          // href={renderValue() as string}
+          href={`/file/${(row.original as skeleton).id}`}
           target="_blank"
           className="underline hover:text-blue-500 hover:text-blue-600"
         >
           {/* Download */}
           <Download />
-        </a>
+        </Link>
       );
     },
   },
